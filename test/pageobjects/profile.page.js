@@ -1,7 +1,7 @@
 import Page from './page';
 
 class ProfilePage extends Page {
-    get iconUser () { return $('ant-avatar-square'); }
+    get iconUser () { return $('.ant-avatar-square'); }
 
     isOpen() {
         expect(browser).toHaveUrlContaining('/profile/')
