@@ -4,7 +4,10 @@ class LoginPage extends Page {
     get inputUsername () { return $('#normal_login_email') }
     get inputPassword () { return $('#normal_login_password') }
     get buttonSubmit () { return $('.login-form-button') }
-    get errorToast () { return $('.ant-notification-notice-message') }
+    get errorAuthFaild () { return $('.ant-notification-notice-message') }
+    get errorNotValidEmail () { return $('//*[@id="normal_login"]/div[1]/div/div[2]/div') }
+    get errorEmailRequired () { return $('//*[@id="normal_login"]/div[1]/div/div[2]/div') }
+    get errorPasswordRequired () { return $('//*[@id="normal_login"]/div[2]/div/div[2]/div') }
 
     open () {
         return super.open('/');
@@ -22,12 +25,29 @@ class LoginPage extends Page {
         this.buttonSubmit.click();
     }
 
+    clearActiveField(str) {
+        let bs = Array(Math.ceil(str.length)).fill('Backspace');
+        browser.keys(bs);
+    }
+
     submitButtonIsDisabled() {
         expect(this.buttonSubmit).toBeDisabled();
     }
 
-    errorToastAppeared() {
-        expect(this.errorToast).toBeDisplayed();
+    errorAuthFailedAppeared() {
+        expect(this.errorAuthFaild).toBeDisplayed();
+    }
+
+    errorNotValidEmailAppeared() {
+        expect(this.errorNotValidEmail).toBeDisplayed();
+    }
+
+    errorEmailRequiredAppeared() {
+        expect(this.errorEmailRequired).toBeDisplayed();
+    }
+
+    errorPasswordRequiredAppeared() {
+        expect(this.errorPasswordRequired).toBeDisplayed();
     }
 }
 
